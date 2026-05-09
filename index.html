@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CompTIA A+ 220-1202 Core 2 Study Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="mobile-toggle" id="btn-toggle-nav">☰</button>
+            <div class="logo">Core 2</div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active">Book Materials</a></li>
+        </ul>
+        <button class="mobile-toggle" id="btn-toggle-study">💡 Study</button>
+    </nav>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <div class="layout-container">
+
+        <!-- Left Side Navigation Bar (Collapsible) -->
+        <aside class="sidebar-nav" id="sidebar-nav">
+            <h2 class="sidebar-title">Table of Contents</h2>
+            <!-- Dynamically populated by app.js -->
+        </aside>
+
+        <!-- Main Reading Content (Natural Flowing) -->
+        <main class="reading-content">
+            <header class="reading-header">
+                <h1 id="reading-title">12.2 Email Systems</h1>
+            </header>
+
+            <div class="markdown-body" id="markdown-container">
+                <p>Select a reading from the sidebar to view its contents.</p>
+            </div>
+
+            <button id="btn-edit-md" class="btn-edit-md" style="display: none;">Edit Raw Markdown</button>
+        </main>
+
+        <!-- Right Side Panel for Key Info and Interactive Review -->
+        <aside class="study-panel" id="study-panel">
+
+            <!-- Quick Overview Section -->
+            <div class="panel-section quick-overview">
+                <div class="panel-header-flex">
+                    <h3><span class="icon">⚡</span> Quick Overview</h3>
+                    <button id="btn-edit-mode" class="btn-edit" style="display: none;">Edit Content</button>
+                </div>
+                <h4 id="overview-title">Select a Section</h4>
+                <ul id="overview-list">
+                    <li>Please select a topic to view key ideas.</li>
+                </ul>
+            </div>
+
+            <!-- Merged Interactive Review Section (Tabs) -->
+            <div class="panel-section interactive-review">
+
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="review">📝 Review Questions</button>
+                    <button class="tab-btn" data-tab="flashcards">🃏 Flashcards</button>
+                </div>
+
+                <!-- Review Questions Tab Content -->
+                <div class="tab-content active" id="tab-review">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Flashcards Tab Content -->
+                <div class="tab-content" id="tab-flashcards">
+                    <!-- Populated by JS -->
+                </div>
+
+            </div>
+
+        </aside>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
