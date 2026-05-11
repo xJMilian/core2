@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // File list to dynamically generate sidebar
     const fileList = [
-        '11.md', '12.md', "13.md"
+        '11.md', '12.md', "13.md", "14.md"
     ];
 
     let isEditing = false;
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = btn.parentElement.querySelector('.carousel-container');
         const width = container.clientWidth;
         container.scrollBy({ left: dir * width, behavior: 'smooth' });
-        
+
         // Sync indicator if it exists
         setTimeout(() => {
             const items = Array.from(container.children);
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = wrapper.querySelector('.carousel-container');
         if (container && container.children[idx]) {
             container.scrollTo({ left: container.children[idx].offsetLeft, behavior: 'smooth' });
-            
+
             // Sync dots
             const dots = wrapper.querySelectorAll('.carousel-indicators .q-ind');
             dots.forEach((dot, i) => {
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    window.setQuestionStatus = function(btn, idx, status) {
+    window.setQuestionStatus = function (btn, idx, status) {
         const wrapper = btn.closest('.interactive-review');
         if (wrapper) {
             const ind = wrapper.querySelector('#q-ind-' + idx);
@@ -424,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let link of navLinks) {
             if (link.getAttribute('data-section') === section.id) {
                 link.classList.add('current');
-                
+
                 // Set the main reading title to the section name
                 let chapterName = link.textContent.replace('▼', '').trim();
                 document.getElementById('reading-title').textContent = chapterName;
@@ -673,10 +673,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 markdownContainer.innerHTML = `<textarea id="edit-md-textarea" class="edit-md-textarea"></textarea>`;
                 document.getElementById('edit-md-textarea').value = raw;
-                
+
                 // Hide pagination buttons
                 document.querySelectorAll('.section-nav').forEach(btn => btn.style.display = 'none');
-            } catch(e) {
+            } catch (e) {
                 alert('Error loading raw markdown: ' + e.message);
                 isEditingMd = false;
                 btnEditMd.textContent = 'Edit Raw Markdown';
@@ -686,10 +686,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Save mode
             const textarea = document.getElementById('edit-md-textarea');
             if (!textarea) return;
-            
+
             const updatedContent = textarea.value;
             btnEditMd.textContent = 'Saving...';
-            
+
             try {
                 const saveRes = await fetch('/api/save-markdown', {
                     method: 'POST',
@@ -701,18 +701,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     isEditingMd = false;
                     btnEditMd.textContent = 'Edit Raw Markdown';
                     btnEditMd.style.backgroundColor = '';
-                    
+
                     // Track where we were before refresh
                     const activeLink = document.querySelector('.nav-link.current');
                     const activeSectionId = activeLink ? activeLink.getAttribute('data-section') : null;
-                    
+
                     // Force cache refresh
                     markdownContainer.setAttribute('data-loaded', '');
-                    
+
                     // Rebuild sidebar in case headers changed
                     sidebarNav.innerHTML = '';
                     await buildSidebar();
-                    
+
                     if (activeSectionId) {
                         const newLink = document.querySelector(`.nav-link[data-file="${file}"][data-section="${activeSectionId}"]`);
                         if (newLink) newLink.click();
@@ -770,7 +770,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileOverlay) {
         mobileOverlay.addEventListener('click', closeAllSidebars);
     }
-    
+
     // Auto-close sidebars when a nav link is clicked on mobile
     sidebarNav.addEventListener('click', (e) => {
         if (e.target.classList.contains('nav-link') && window.innerWidth <= 1100) {
